@@ -1,0 +1,15 @@
+*{
+     box-sizing: border-box;
+}
+.gameArea{
+     width:80vw;
+     margin:auto;
+     text-align: center;
+}
+.player{
+     width: 33%;
+     border: 1px solid #ddd1dd;
+     min-height: 100px;
+     float: left;
+     padding: 10px;
+}
