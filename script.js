@@ -12,7 +12,7 @@ btn.addEventListener('click', (event)=>{
                ele.style.backgroundColor = '#bbb';
           }
      }
-     mes.innerHTML = "Battle has begun ...";
+     mes.innerHTML = `${game.cards}`
      gamer(temp, []);
 
 } )
@@ -23,13 +23,9 @@ function gamer (inPlay, holder) {
      inPlay.forEach((i) =>{
 
      })
-     
-
- 
-    
 }
 const mes = maker(main, 'div', 'mes', 'Click to Play')
-const game = {players:2, cards: [], view: []}
+const game = {players:3, cards: [], view: []}
 
 // const cardData = {suits:['spades', 'hearts', 'diams', 'clubs'], val: ['A', '2', '3', '4', '5', '6', '7', '8', '9', 
 // 10', 'J', 'Q', 'K']}
@@ -421,19 +417,21 @@ const deck = [];
 buildDeck();
 addPlayers();
 function addPlayers(){
-     // let start = 0;
-     // let num = 6
-     // let end = start + num;
      for (let i = 0; i<game.players; i++) {
           const el = maker(gameArea, 'div', 'player', ``);
           const ele = maker(el,'div', 'info', `${i+1} Player`);
-          const card = maker(el, 'div', 'card', ``);
+          const hand = deck.slice(0,6)
+          let handIcons = [];
+          for (j = 0; j< hand.length;j++){
+               handIcons.push(hand[j].icon) 
+          }
+          handIcons = handIcons.join(' ')
+          const card = maker(el, 'div', 'card', `${handIcons}`);
           game.view.push(card);
           game.cards[i] = deck.splice(0, 6);
           const score = maker(el, 'div', 'score', `${game.cards[i].length} left`);
-                
-
-     } console.log(game.cards);
+          } 
+          console.log(game.cards);
 }
 function maker (par, eleType, cla, html){
      const ele = document.createElement(eleType);
@@ -446,17 +444,14 @@ function buildDeck(){
  
                const card = {
                     suit : val.suit,
-                    icon : `${val.icon}`,
+                    icon : val.icon,
                     value : val.val
                } 
                deck.push(card);
-})
+          })
 deck.sort(()=> {
      return Math.random()-0.5;
-
 })
-//}
-
 }
 
 //make elements on the page
