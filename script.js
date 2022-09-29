@@ -1,6 +1,36 @@
 const main = document.querySelector('.game');
 const gameArea = maker(main,'div', 'gameArea','')
-const game = {players:2, cards: []}
+const btn = maker(main, 'button', 'btn', 'Next Round >>>')
+btn.addEventListener('click', (event)=>{
+     const temp = [];
+     for (let i = 0; i<game.players;i++){
+          if(game.cards[i].length >0) {
+               temp.push(i);
+          }else{
+               const ele = game.view[i];
+               game.view[i].innerHTML = "X";
+               ele.style.backgroundColor = '#bbb';
+          }
+     }
+     mes.innerHTML = "Battle has begun ...";
+     gamer(temp, []);
+
+} )
+
+function gamer (inPlay, holder) {
+     const vals = [];
+     console.log(inPlay);
+     inPlay.forEach((i) =>{
+
+     })
+     
+
+ 
+    
+}
+const mes = maker(main, 'div', 'mes', 'Click to Play')
+const game = {players:2, cards: [], view: []}
+
 // const cardData = {suits:['spades', 'hearts', 'diams', 'clubs'], val: ['A', '2', '3', '4', '5', '6', '7', '8', '9', 
 // 10', 'J', 'Q', 'K']}
 
@@ -126,9 +156,9 @@ const cardData = [
      new Card ('I', '&#73', 2),
      new Card ('I', '&#73', 2),
      new Card ('I', '&#73', 2),
-     new Card ('I', '&#73&#78', 2),
+     new Card ('I', '&#73', 2),
      new Card ('IN', '&#73&#78', 7),
-     new Card ('IN', '&#74', 7),
+     new Card ('IN', '&#73&#78', 7),
      new Card ('J', '&#74', 2),
      new Card ('J', '&#74', 2),
      new Card ('K', '&#75', 8),
@@ -152,6 +182,7 @@ const cardData = [
      new Card ('O', '&#79', 2),
      new Card ('O', '&#79', 2),
      new Card ('O', '&#79', 2),
+     new Card ('O', '&#79', 2),
      new Card ('P', '&#80', 6),
      new Card ('P', '&#80', 6),
      new Card ('Q', '&#81', 15),
@@ -164,6 +195,7 @@ const cardData = [
      new Card ('R', '&#82', 5),
      new Card ('R', '&#82', 5),
      new Card ('R', '&#82', 5),
+     new Card ('S', '&#83', 3),
      new Card ('S', '&#83', 3),
      new Card ('S', '&#83', 3),
      new Card ('S', '&#83', 3),
@@ -393,9 +425,12 @@ function addPlayers(){
      // let num = 6
      // let end = start + num;
      for (let i = 0; i<game.players; i++) {
-          const ele = maker(gameArea,
-                'div', 'player', `${i+1} Player`);
-                game.cards[i] = deck.splice(0, 6)
+          const el = maker(gameArea, 'div', 'player', ``);
+          const ele = maker(el,'div', 'info', `${i+1} Player`);
+          const card = maker(el, 'div', 'card', ``);
+          game.view.push(card);
+          game.cards[i] = deck.splice(0, 6);
+          const score = maker(el, 'div', 'score', `${game.cards[i].length} left`);
                 
 
      } console.log(game.cards);
