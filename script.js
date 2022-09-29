@@ -1,6 +1,6 @@
 const main = document.querySelector('.game');
 const gameArea = maker(main,'div', 'gameArea','')
-const game = {players:2}
+const game = {players:2, cards: []}
 // const cardData = {suits:['spades', 'hearts', 'diams', 'clubs'], val: ['A', '2', '3', '4', '5', '6', '7', '8', '9', 
 // 10', 'J', 'Q', 'K']}
 
@@ -111,7 +111,7 @@ const cardData = [
      new Card ('E', '&#69', 2),
      new Card ('ER', '&#69&#82', 7),
      new Card ('ER', '&#69&#82', 7),
-     new Card ('F', '&#70', '6'),
+     new Card ('F', '&#70', 6),
      new Card ('F', '&#70', 6),
      new Card ('G', '&#71', 6),
      new Card ('G', '&#71', 6),
@@ -389,10 +389,16 @@ const deck = [];
 buildDeck();
 addPlayers();
 function addPlayers(){
+     // let start = 0;
+     // let num = 6
+     // let end = start + num;
      for (let i = 0; i<game.players; i++) {
           const ele = maker(gameArea,
                 'div', 'player', `${i+1} Player`);
-     }
+                game.cards[i] = deck.splice(0, 6)
+                
+
+     } console.log(game.cards);
 }
 function maker (par, eleType, cla, html){
      const ele = document.createElement(eleType);
@@ -409,6 +415,10 @@ function buildDeck(){
                     value : val.val
                } 
                deck.push(card);
+})
+deck.sort(()=> {
+     return Math.random()-0.5;
+
 })
 //}
 
