@@ -1,19 +1,23 @@
 const main = document.querySelector('.game');
 const gameArea = maker(main,'div', 'gameArea','')
 const btn = maker(main, 'button', 'btn', 'Next Round >>>')
+
+let handIcons = [];
 btn.addEventListener('click', (event)=>{
      const temp = [];
-     for (let i = 0; i<game.players;i++){
-          if(game.cards[i].length >0) {
-               temp.push(i);
-          }else{
-               const ele = game.view[i];
-               game.view[i].innerHTML = "X";
-               ele.style.backgroundColor = '#bbb';
-          }
-     }
-     mes.innerHTML = `${game.cards}`
+     // for (let i = 0; i<game.players;i++){
+     //      if(game.cards[i].length >0) {
+     //           temp.push(i);
+     //      }else{
+     //           const ele = game.view[i];
+     //           game.view[i].innerHTML = "X";
+     //           ele.style.backgroundColor = '#bbb';
+     //      }
+     // }
+     mes.innerHTML = ` You managed to use all of your  letters, ${handIcons}, to make words.`
      gamer(temp, []);
+
+
 
 } )
 
@@ -25,7 +29,9 @@ function gamer (inPlay, holder) {
      })
 }
 const mes = maker(main, 'div', 'mes', 'Click to Play')
-const game = {players:3, cards: [], view: []}
+const game = {players:1, cards: [], view: []}
+const resBtn = maker(main, 'button', 'response', '' )
+resBtn.addEventListener('click', myFunction)
 
 // const cardData = {suits:['spades', 'hearts', 'diams', 'clubs'], val: ['A', '2', '3', '4', '5', '6', '7', '8', '9', 
 // 10', 'J', 'Q', 'K']}
@@ -421,7 +427,7 @@ function addPlayers(){
           const el = maker(gameArea, 'div', 'player', ``);
           const ele = maker(el,'div', 'info', `${i+1} Player`);
           const hand = deck.slice(0,6)
-          let handIcons = [];
+          
           for (j = 0; j< hand.length;j++){
                handIcons.push(hand[j].icon) 
           }
@@ -432,6 +438,8 @@ function addPlayers(){
           const score = maker(el, 'div', 'score', `${game.cards[i].length} left`);
           } 
           console.log(game.cards);
+          
+
 }
 function maker (par, eleType, cla, html){
      const ele = document.createElement(eleType);
@@ -453,9 +461,10 @@ deck.sort(()=> {
      return Math.random()-0.5;
 })
 }
-
-//make elements on the page
-
+function myFunction() {
+     var x = document.classList("submission").value;
+     document.classList("mes").innerHTML = x;
+   }
 
 
 
